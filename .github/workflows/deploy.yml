@@ -21,7 +21,7 @@ jobs:
           protocol: ftp
           port: 21
           local-dir: ./           # local root of your project
-          server-dir: /htdocs/sbaol/    # upload everything into htdocs
+          server-dir: /htdocs/    # upload everything into htdocs
           exclude: |
             **/.git*
             **/.github*
