@@ -1,0 +1,29 @@
+name: 🚀 Deploy CodeIgniter 4.5 to Host
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Upload entire project via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftpupload.net
+          username: ${{ secrets.CPANEL_FTP_USER }}
+          password: ${{ secrets.CPANEL_FTP_PASS }}
+          protocol: ftp
+          port: 21
+          local-dir: ./           # local root of your project
+          server-dir: /htdocs/sbaol/    # upload everything into htdocs
+          exclude: |
+            **/.git*
+            **/.github*
+            **/tests*
+            **/.env
