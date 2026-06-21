@@ -99,14 +99,14 @@ class MemberController extends BaseController
             // Get current member to delete old photo if exists
             $currentMember = $this->memberModel->find($memberId);
             if ($currentMember && $currentMember['profile_photo']) {
-                $oldPhotoPath = ROOTPATH . 'public/' . $currentMember['profile_photo'];
+                $oldPhotoPath = ROOTPATH . $currentMember['profile_photo'];
                 if (file_exists($oldPhotoPath)) {
                     @unlink($oldPhotoPath);
                 }
             }
 
             // Ensure upload directory exists
-            $uploadDir = ROOTPATH . 'public/uploads/members';
+            $uploadDir = ROOTPATH . 'uploads/members';
             if (!is_dir($uploadDir)) {
                 mkdir($uploadDir, 0755, true);
             }
